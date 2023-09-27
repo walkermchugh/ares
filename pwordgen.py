@@ -1,5 +1,6 @@
 import secrets
 import string
+import pyperclip
 
 def generate_password():
     # Define character sets for different types of characters
@@ -28,6 +29,17 @@ def generate_password():
 
     return password
 
-# Generate and print a secure password
-secure_password = generate_password()
-print(secure_password)
+def copy_to_clipboard(text):
+    try:
+        pyperclip.copy(text)
+        print("Password copied to clipboard.")
+    except pyperclip.PyperclipException as e:
+        print(f"Error copying to clipboard: {e}")
+
+if __name__ == "__main__":
+    # Generate and print a secure password
+    secure_password = generate_password()
+    print("Generated Password:", secure_password)
+
+    # Copy the password to the clipboard
+    copy_to_clipboard(secure_password)
